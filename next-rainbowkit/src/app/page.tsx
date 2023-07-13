@@ -1,10 +1,7 @@
 import "../utils/global.css";
 
 export function Page() {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 }
 
 export default Page;
