@@ -41,10 +41,10 @@ contract SupplyChain is ERC721, ERC721URIStorage, Ownable {
         return tokenId;
     }
 
-    function issueCertificate(address artist, uint256 artworkId) public {
+    function issueCertificate(uint256 artworkId) public {
         Artwork storage _artwork = artworks[artworkId];
         require(_artwork.tokenId == 0, "!!!Certificate already issued!!!");
-        uint256 tokenId = safeMint(artist);
+        uint256 tokenId = safeMint(_artwork.supplier);
         _artwork.tokenId = tokenId;
     }
 
