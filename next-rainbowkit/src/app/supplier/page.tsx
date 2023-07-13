@@ -251,11 +251,7 @@ const ArtGallery: React.FC = () => {
                 <div className="p-4">
                   <h3 className="text-lg font-bold mb-2">{art.caption}</h3>
                   <div className="flex justify-center items-center h-300">
-                    <img
-                      src={art.image}
-                      alt="image"
-                      className="max-h-full max-w-full"
-                    />
+                    <img src={art.image} alt="image" className="h-300 w-300" />
                   </div>
                   <p className="text-gray-500">
                     Description: {art.description}
