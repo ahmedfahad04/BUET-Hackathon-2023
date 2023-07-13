@@ -1,5 +1,7 @@
 // import { createClient } from 'web3.storage';
+import { ethers } from "ethers";
 import { Web3Storage } from "web3.storage";
+import SupplyChainABI from "../../../../contracts/SupplyChainABI.json";
 
 import {
   jsonFile,
@@ -7,16 +9,12 @@ import {
   showLink,
   showMessage,
 } from "../../components/helpers";
+import { lstat } from "fs";
 
 const namePrefix = "ImageGallery";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEZBNjJjNzlEYWRCNDdkYTJlZEM3NDkxNUJGNTg0MjZhRjNjMjFCNTIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODkyNDU0MjY5ODcsIm5hbWUiOiJidWV0In0.IHMOJ2XdTXFIrpx14Zy-pT2g8fgB2lJPr5PEtuCiZoU";
 const fetchedImages = [];
-
-// // Define a function to fetch the images and metadata
-// export const loadImages = async (imgData: any) => {
-//   fetchedImages.push(imgData);
-// };
 
 export async function getImageMetadata(cid: any) {
   const url = makeGatewayURL(cid, "metadata.json");
@@ -77,6 +75,17 @@ const saveImageToLocalStorage = (
   localStorage.setItem("imageData", JSON.stringify(existingData));
 };
 
+const getContract = async () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(
+    "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314",
+    SupplyChainABI,
+    signer
+  );
+  return contract;
+};
+
 export async function UploadImage(
   imageFile: any,
   caption: any,
@@ -111,6 +120,8 @@ export async function UploadImage(
 
   const web3storage = new Web3Storage({ token });
   showMessage(`> 🤖 calculating content ID for ${imageFile.name}`);
+
+  // adding to web3.storage returns a cid and a wrapped File
   const cid = await web3storage.put([imageFile, metadataFile], {
     // the name is viewable at https://web3.storage/files and is included in the status and list API responses
     name: uploadName,
@@ -140,6 +151,24 @@ export async function UploadImage(
     credentials,
     quantity
   );
+
+  // add data to blockchain
+  try {
+    const contract = await getContract();
+    console.log("CONTRACT: ", contract);
+    let blockData = await contract.addArtwork(
+      caption,
+      description,
+      imageURI,
+      parseInt(price),
+      parseInt(quantity),
+      credentials
+    );
+    blockData.wait();
+    console.log("BLOCK DATA: ", blockData);
+  } catch (error) {
+    console.log("Error adding artwork to blockchain", error);
+  }
 
   return { cid, metadataGatewayURL, imageGatewayURL, imageURI, metadataURI };
 }
