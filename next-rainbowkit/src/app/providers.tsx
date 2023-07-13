@@ -7,6 +7,7 @@ import "../utils/global.css";
 
 import Navbar from "../components/Navbar";
 import { chains, config } from "../wagmi";
+import Home from "../components/Home";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false);
@@ -16,6 +17,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <RainbowKitProvider chains={chains}>
         <Navbar />
         {mounted && children}
+        <Home />
       </RainbowKitProvider>
     </WagmiConfig>
   );
