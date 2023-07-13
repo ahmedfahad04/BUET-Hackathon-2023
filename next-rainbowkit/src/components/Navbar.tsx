@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
     <nav className="flex items-center justify-between bg-gray-100 py-4 px-8">
       <div className="text-xl font-bold hover:text-blue-600">
         <Link href="/">
-          <p>Art Platform</p>
+          Art Platform
         </Link>
       </div>
       <div className="flex items-center space-x-4">
