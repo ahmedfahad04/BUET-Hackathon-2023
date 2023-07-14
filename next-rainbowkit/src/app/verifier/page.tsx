@@ -32,17 +32,6 @@ const VerifierWindow: React.FC = () => {
   const [contract, setContract] = useState(null);
   let contractAddress = "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314";
 
-  // const getContract = async () => {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //   const signer = provider.getSigner();
-  //   const contract = new ethers.Contract(
-  //     "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314",
-  //     SupplyChainABI,
-  //     signer
-  //   );
-  //   return contract;
-  // };
-
   const connectWalletHandler = () => {
     console.log("connectWalletHandler");
     if (window.ethereum && window.ethereum.isMetaMask) {
@@ -184,9 +173,7 @@ const VerifierWindow: React.FC = () => {
                   <p className="text-gray-500">Price: {art.price}</p>
                   <p className="text-gray-500">Quantity: {art.quantity}</p>
                 </div>
-                <button
-                  className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-500 text-grey-500"
-                >
+                <button className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-500 text-grey-500">
                   Verify
                 </button>
               </div>

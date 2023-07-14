@@ -231,7 +231,7 @@ const ArtGallery: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-cyan-400 p-4">
+    <div className="bg-cyan-400 p-4 h-screen flex justify-center items-center">
       {!isRegistered && (
         <div className="mb-4 flex justify-center">
           <button
