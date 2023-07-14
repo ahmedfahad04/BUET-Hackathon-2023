@@ -25,7 +25,7 @@ npm run dev
 ## How to use
 
 
-## Credits
+### Credits
 **[Shazzad Hossain](https://github.com/shazzad5709)
 [Ishtiaq Ahmed Fahad](https://github.com/ahmedfahad04)
 [Kamruzzaman Asif](https://github.com/KamruzzamanAsif)**
