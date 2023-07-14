@@ -2,10 +2,10 @@
 ArtChain is a Supply Chain Application for **authentic artworks and premium collectibles**.
 
 ## Features
-- There are 3 types of users: Suppliers, Buyers, and Verifiers. Suppliers and Verifiers need to register their account using their wallet.
-- Suppliers can add and manage artworks and collectibles for sale.
-- Verifiers can issue authenticity/quality certificate against each artwork or collectible in the form of a token.
-- Buyers can verify authenticity of an artwork.
+- There are 3 types of users: Suppliers, Buyers, and Verifiers. Suppliers and Verifiers need to register their accounts using their wallets.
+- Suppliers can add and manage artwork and collectibles for sale.
+- Verifiers can issue authenticity/quality certificates against each artwork or collectible in the form of a token.
+- Buyers can verify the authenticity certificate of an artwork.
 - Buyers can purchase an item and pay for that item directly from the app, and track the delivery status.
 
 ## How to run
@@ -26,6 +26,6 @@ npm run dev
 
 
 ### Credits
-**[Shazzad Hossain](https://github.com/shazzad5709)
-[Ishtiaq Ahmed Fahad](https://github.com/ahmedfahad04)
+**[Shazzad Hossain](https://github.com/shazzad5709)<br>
+[Ishtiaq Ahmed Fahad](https://github.com/ahmedfahad04)<br>
 [Kamruzzaman Asif](https://github.com/KamruzzamanAsif)**
