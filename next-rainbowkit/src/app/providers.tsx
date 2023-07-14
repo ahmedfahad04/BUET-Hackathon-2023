@@ -17,7 +17,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <RainbowKitProvider chains={chains}>
         <Navbar />
         {mounted && children}
-        <Home />
       </RainbowKitProvider>
     </WagmiConfig>
   );

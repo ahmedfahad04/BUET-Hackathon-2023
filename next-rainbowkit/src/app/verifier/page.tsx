@@ -107,8 +107,7 @@ const VerifierWindow: React.FC = () => {
     );
   };
 
-
-  const verifyArtwork = async(artist_addr: any, artwork_id: any) => {
+  const verifyArtwork = async (artist_addr: any, artwork_id: any) => {
     // Perform the desired task on submit
     console.log("Submit button clicked");
     let val = await contract.issueCertificate(artist_addr, artwork_id);
@@ -164,20 +163,21 @@ const VerifierWindow: React.FC = () => {
 
   return (
     <div>
-    <VerifierHero />
-    <div className="flex flex-wrap">
-      {arts.map((art) => (
-        <div key={art.id} className="p-4 w-full md:w-1/2 lg:w-1/3">
-          <div className="bg-white border rounded-lg shadow-lg h-500">
-            <div className="h-full flex flex-col justify-between">
+      <VerifierHero />
+      <div className="flex flex-wrap justify-center">
+        {arts.map((art) => (
+          <div key={art.id} className="p-4 w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+            <div className="bg-white border rounded-lg shadow-lg">
               <div className="p-4">
                 <h3 className="text-lg font-bold mb-2">{art.caption}</h3>
-                <div className="flex justify-center items-center h-300">
-                  <img src={art.image} alt="image" className="h-300 w-300" />
+                <div className="flex justify-center items-center">
+                  <img
+                    src={art.image}
+                    alt="image"
+                    className="h-40 w-40 object-cover rounded-full"
+                  />
                 </div>
-                <p className="text-gray-500">
-                  Description: {art.description}
-                </p>
+                <p className="text-gray-500">Description: {art.description}</p>
               </div>
               <div className="flex items-center justify-between px-4 py-2">
                 <div>
@@ -185,20 +185,17 @@ const VerifierWindow: React.FC = () => {
                   <p className="text-gray-500">Quantity: {art.quantity}</p>
                 </div>
                 <button
-              className="btn-verify bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded shadow"
-              onClick={() => verifyArtwork("kmne dimu???", art.id)}
-            >
-              Verify
-            </button>
+                  className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-500 text-grey-500"
+                >
+                  Verify
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 };
-
 
 export default VerifierWindow;

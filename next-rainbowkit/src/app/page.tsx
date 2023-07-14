@@ -1,7 +1,12 @@
+import Home from "../components/Home";
 import "../utils/global.css";
 
 export function Page() {
-  return <></>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }
 
 export default Page;

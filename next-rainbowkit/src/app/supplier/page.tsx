@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { SetStateAction, useEffect, useState } from "react";
 import SupplyChainABI from "../../../../contracts/SupplyChainABI.json";
 import UploadImage from "./uploadimage";
+import UpdateProductDetails from "./updateProductDetails";
 
 interface Art {
   id: string;
@@ -253,9 +254,96 @@ const ArtGallery: React.FC = () => {
           </div>
           {isModalOpen && (
             <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-              {/* Modal Content */}
+              <div className="bg-white p-4 rounded-md">
+                <h2 className="text-xl font-bold mb-4">Add Art</h2>
+
+                <div className="mb-4">
+                  <label htmlFor="caption">Caption:</label>
+                  <input
+                    type="text"
+                    id="caption"
+                    value={caption}
+                    onChange={handleCaptionChange}
+                    required
+                    className="bg-gray-100 p-2 rounded-md w-full"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="description">Description:</label>
+                  <textarea
+                    id="description"
+                    value={description}
+                    onChange={handleDescriptionChange}
+                    required
+                    className="bg-gray-100 p-2 rounded-md w-full"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="image">Image:</label>
+                  <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="price">Price:</label>
+                  <input
+                    type="number"
+                    id="price"
+                    value={price}
+                    onChange={handlePriceChange}
+                    required
+                    className="bg-gray-100 p-2 rounded-md w-full"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="quantity">Quantity:</label>
+                  <input
+                    type="number"
+                    id="quantity"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    required
+                    className="bg-gray-100 p-2 rounded-md w-full"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="credentials">
+                    Artist/Creator Credentials:
+                  </label>
+                  <input
+                    type="text"
+                    id="credentials"
+                    value={credentials}
+                    onChange={handleCredentialsChange}
+                    required
+                    className="bg-gray-100 p-2 rounded-md w-full"
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleModalClose}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleConfirm}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
             </div>
           )}
+          ;
           <div className="flex flex-wrap justify-center">
             {arts.map((art) => (
               <div
@@ -281,7 +369,10 @@ const ArtGallery: React.FC = () => {
                       <p className="text-gray-500">Price: {art.price}</p>
                       <p className="text-gray-500">Quantity: {art.quantity}</p>
                     </div>
-                    <button className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-500 text-grey-500">
+                    <button 
+                    className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-00 text-cyan-500"
+                    onClick={UpdateProductDetails}
+                    >
                       Update
                     </button>
                   </div>
