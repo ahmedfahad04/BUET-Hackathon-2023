@@ -2,7 +2,7 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { Providers } from './providers'
 
 export const metadata = {
-  title: 'wagmi',
+  title: 'BitRift MarketPlace',
 }
 
 export default function RootLayout({

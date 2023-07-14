@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import { SetStateAction, useEffect, useState } from "react";
 import SupplyChainABI from "../../../../contracts/SupplyChainABI.json";
 import UploadImage from "./uploadimage";
-import UpdateProductDetails from "./updateProductDetails";
 
 interface Art {
   id: string;
@@ -35,7 +34,7 @@ const ArtGallery: React.FC = () => {
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
-  let contractAddress = "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314";
+  let contractAddress = "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE";
 
   const handleAddArt = () => {
     setIsModalOpen(true);
@@ -231,11 +230,11 @@ const ArtGallery: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-cyan-400 p-4 h-screen flex justify-center items-center">
+    <div className="bg-cyan-400 p-4 h-screen">
       {!isRegistered && (
         <div className="mb-4 flex justify-center">
           <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded text-white text-xl p-3 font-bold"
             onClick={connectWalletHandler}
           >
             Register as Supplier
@@ -343,36 +342,36 @@ const ArtGallery: React.FC = () => {
               </div>
             </div>
           )}
-          ;
           <div className="flex flex-wrap justify-center">
             {arts.map((art) => (
               <div
                 key={art.id}
                 className="p-4 w-full md:w-1/2 lg:w-1/3 xl:w-1/4"
               >
-                <div className="bg-white border rounded-lg shadow-lg">
+                <div className="bg-white border-b-4 border-green-500 rounded-lg shadow-lg">
                   <div className="p-4">
                     <h3 className="text-lg font-bold mb-2">{art.caption}</h3>
                     <div className="flex justify-center items-center">
                       <img
                         src={art.image}
                         alt="image"
-                        className="h-40 w-40 object-cover rounded-full"
+                        className="h-40 w-40 object-cover rounded-md"
                       />
                     </div>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 text-xl p-3 justify-center items-center flex bg-green-200 m-2">
                       Description: {art.description}
                     </p>
                   </div>
                   <div className="flex items-center justify-between px-4 py-2">
-                    <div>
-                      <p className="text-gray-500">Price: {art.price}</p>
-                      <p className="text-gray-500">Quantity: {art.quantity}</p>
+                    <div className="flex">
+                      <p className="text-gray-900 bg-yellow-400 flex justify-center items-center p-2 rounded-md mr-2">
+                        Price: {art.price}
+                      </p>
+                      <p className="text-gray-900 bg-blue-400 flex justify-center items-center p-2 rounded-md">
+                        Quantity: {art.quantity}
+                      </p>
                     </div>
-                    <button 
-                    className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-00 text-cyan-500"
-                    onClick={UpdateProductDetails}
-                    >
+                    <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-red-600 text-grey-500">
                       Update
                     </button>
                   </div>

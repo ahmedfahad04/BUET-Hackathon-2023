@@ -4,7 +4,7 @@ import SupplyChainABI from "../../../../contracts/SupplyChainABI.json";
 
 export function RegisterSupplier() {
   // deploy simple storage contract and paste deployed contract address here. This value is local ganache chain
-  let contractAddress = "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314";
+  let contractAddress = "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE";
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [defaultAccount, setDefaultAccount] = useState(null);

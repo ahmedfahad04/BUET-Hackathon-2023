@@ -30,7 +30,7 @@ const VerifierWindow: React.FC = () => {
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
-  let contractAddress = "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314";
+  let contractAddress = "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE";
 
   const connectWalletHandler = () => {
     console.log("connectWalletHandler");
@@ -96,10 +96,28 @@ const VerifierWindow: React.FC = () => {
     );
   };
 
+  const getContract = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE",
+      SupplyChainABI,
+      signer
+    );
+    return contract;
+  };
+
   const verifyArtwork = async (artist_addr: any, artwork_id: any) => {
     // Perform the desired task on submit
-    console.log("Submit button clicked");
-    let val = await contract.issueCertificate(artist_addr, artwork_id);
+    console.log("Submit button clicked" + artist_addr);
+    try {
+      const contract = await getContract();
+      let val = await contract.issueCertificate(artist_addr, artwork_id);
+      val.wait();
+      console.log(artist_addr + " " + artwork_id);
+    } catch (err) {
+      console.log(err);
+    }
     // Add your logic here
   };
 
@@ -156,7 +174,7 @@ const VerifierWindow: React.FC = () => {
       <div className="flex flex-wrap justify-center">
         {arts.map((art) => (
           <div key={art.id} className="p-4 w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
-            <div className="bg-white border rounded-lg shadow-lg">
+            <div className="bg-white border-b-4 border-green-500 rounded-lg shadow-lg">
               <div className="p-4">
                 <h3 className="text-lg font-bold mb-2">{art.caption}</h3>
                 <div className="flex justify-center items-center">
@@ -166,15 +184,21 @@ const VerifierWindow: React.FC = () => {
                     className="h-40 w-40 object-cover rounded-full"
                   />
                 </div>
-                <p className="text-gray-500">Description: {art.description}</p>
+                <p className="text-gray-500 text-xl p-3 justify-center items-center flex bg-green-200 m-2">
+                  Description: {art.description}
+                </p>
               </div>
               <div className="flex items-center justify-between px-4 py-2">
-                <div>
-                  <p className="text-gray-500">Price: {art.price}</p>
-                  <p className="text-gray-500">Quantity: {art.quantity}</p>
+                <div className="flex">
+                  <p className="text-gray-900 bg-yellow-400 flex justify-center items-center p-2 rounded-md mr-2">
+                    Price: {art.price}
+                  </p>
+                  <p className="text-gray-900 bg-blue-400 flex justify-center items-center p-2 rounded-md">
+                    Quantity: {art.quantity}
+                  </p>
                 </div>
-                <button className="px-6 py-2 text-sm rounded shadow bg-blue-100 hover:bg-blue-500 text-grey-500">
-                  Verify
+                <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-blue-00 text-grey-500">
+                  Buy
                 </button>
               </div>
             </div>

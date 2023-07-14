@@ -33,7 +33,7 @@ const RenderNFTCard: React.FC<RenderNFTCardProps> = ({ searchTerm }) => {
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
-  let contractAddress = "0x48FEa4f9bbA03d024f9A449F6FB9e36CD1cA5314";
+  let contractAddress = "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE";
 
   // update account, will cause component re-render
   const accountChangedHandler = (newAccount: any) => {
@@ -126,14 +126,20 @@ const RenderNFTCard: React.FC<RenderNFTCardProps> = ({ searchTerm }) => {
                   className="h-40 w-40 object-cover rounded-full"
                 />
               </div>
-              <p className="text-gray-500">Description: {art.description}</p>
+              <p className="text-gray-500 text-xl p-3 justify-center items-center flex bg-green-200 m-2">
+                Description: {art.description}
+              </p>
             </div>
             <div className="flex items-center justify-between px-4 py-2">
-              <div>
-                <p className="text-gray-500">Price: {art.price}</p>
-                <p className="text-gray-500">Quantity: {art.quantity}</p>
+              <div className="flex">
+                <p className="text-gray-900 bg-yellow-400 flex justify-center items-center p-2 rounded-md mr-2">
+                  Price: {art.price}
+                </p>
+                <p className="text-gray-900 bg-blue-400 flex justify-center items-center p-2 rounded-md">
+                  Quantity: {art.quantity}
+                </p>
               </div>
-              <button className="px-6 py-2 text-sm rounded shadow bg-red-100 hover:bg-blue-00 text-blue-500">
+              <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-blue-00 text-grey-500">
                 Buy
               </button>
             </div>
