@@ -139,7 +139,7 @@ const RenderNFTCard: React.FC<RenderNFTCardProps> = ({ searchTerm }) => {
                   Quantity: {art.quantity}
                 </p>
               </div>
-              <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-blue-00 text-grey-500">
+              <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-green-500 text-grey-500">
                 Buy
               </button>
             </div>

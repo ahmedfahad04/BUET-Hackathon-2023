@@ -32,12 +32,25 @@ const VerifierWindow: React.FC = () => {
   const [contract, setContract] = useState(null);
   let contractAddress = "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE";
 
+  const getContract = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE",
+      SupplyChainABI,
+      signer
+    );
+    return contract;
+  };
+
   const connectWalletHandler = () => {
     console.log("connectWalletHandler");
+
     if (window.ethereum && window.ethereum.isMetaMask) {
       window.ethereum
         .request({ method: "eth_requestAccounts" })
         .then(async (result: any[]) => {
+          const contract = getContract();
           let val = await contract.registerVerifier();
           val.wait();
           console.log("VAL: " + val);
@@ -94,17 +107,6 @@ const VerifierWindow: React.FC = () => {
         </button>
       </div>
     );
-  };
-
-  const getContract = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(
-      "0xc5316fe8E5d02eA8f02799254E267EC01f1F90DE",
-      SupplyChainABI,
-      signer
-    );
-    return contract;
   };
 
   const verifyArtwork = async (artist_addr: any, artwork_id: any) => {
@@ -197,8 +199,8 @@ const VerifierWindow: React.FC = () => {
                     Quantity: {art.quantity}
                   </p>
                 </div>
-                <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-blue-00 text-grey-500">
-                  Buy
+                <button className="bold px-6 py-2 text-lg rounded-full shadow bg-red-300 hover:bg-blue-400 text-grey-500">
+                  Verify
                 </button>
               </div>
             </div>

@@ -14,7 +14,7 @@ const Home = () => {
       <div className="py-16 px-8 sm:px-12 lg:px-24 ">
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white font-bold">
-            Welcome to the BitRift Marketplace
+            Welcome to the ArtChain Marketplace
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-white mt-4">
             Explore, Collect, and Trade Unique Digital Assets
